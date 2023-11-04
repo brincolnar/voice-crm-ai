@@ -1,3 +1,21 @@
+.sticky-button {
+  background: linear-gradient(to right, rgb(255, 0, 255), rgb(245, 96, 250)); /* Gradient background from pink to violet */
+  border: none;              /* Removes default border */
+  border-radius: 30px;       /* Rounded borders */
+  padding: 10px 20px;        /* Padding around the text */
+  color: white;              /* Text color */
+  font-weight: bold;         /* Makes text bold */
+  font-size: medium;
+  cursor: pointer;           /* Changes cursor to hand when hovering */
+  transition: 0.3s;          /* Smooth transition for hover effects */
+}
+
+.sticky-button:hover {
+  transform: scale(1.05);    /* Slightly enlarges the button when hovered */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow when hovered */
+}
+
+
 .App {
   text-align: center;
 }
