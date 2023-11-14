@@ -7,11 +7,21 @@ from celery import Celery
 from werkzeug.utils import secure_filename
 from shutil import move
 from datetime import datetime
+from flask_socketio import SocketIO, emit
 
 
 app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 CORS(app, supports_credentials=True, origins=['*'])
+
+
+@socketio.on('stream')
+def handle_stream(audio_chunk):
+    # Process the chunk and transcribe
+    # Send transcription back to the client
+    print("Received audio chunk")
+    emit('transcription', {'text': 'Streaming'})
 
 @app.route('/transcribe', methods=['POST'])
 def transcribe():
@@ -63,4 +73,5 @@ def home():
     return "Hello Flask!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, threaded=True, debug=True)
+    socketio.run(app, debug=True)
+
